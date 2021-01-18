@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Product;
 use Illuminate\Console\Command;
 
 class TrackCommand extends Command
@@ -11,24 +12,14 @@ class TrackCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'track';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    protected $description = 'Track all product stock.';
 
     /**
      * Execute the console command.
@@ -37,6 +28,7 @@ class TrackCommand extends Command
      */
     public function handle()
     {
-        return 0;
+        Product::all()->each->track();
+        $this->info('All Done!');
     }
 }
